@@ -60,7 +60,7 @@ npm install
 ### Option 2: Clone and Use
 
 ```bash
-git clone https://github.com/yourusername/marksite.git
+git clone https://github.com/kadin/marksite.git
 cd marksite
 npm install
 npm run init
@@ -120,7 +120,7 @@ Edit `config.yaml`:
 site:
   title: "My Blog"
   description: "About my blog"
-  url: "https://yourusername.github.io"
+  url: "https://kadin.github.io"
   author: "Your Name"
 
 blog:

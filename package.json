@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/marksite.git"
+    "url": "git+https://github.com/kadin/marksite.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/marksite/issues"
+    "url": "https://github.com/kadin/marksite/issues"
   },
-  "homepage": "https://github.com/yourusername/marksite#readme",
+  "homepage": "https://github.com/kadin/marksite#readme",
   "scripts": {
     "build": "node cli.js build",
     "serve": "node cli.js serve",
