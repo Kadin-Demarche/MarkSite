@@ -1,5 +1,10 @@
 node_modules/
 _site/
+blog-data/_site/
 .DS_Store
 *.log
 .env
+.zencoder/
+.gitignore
+.npmignore
+.editorconfig

@@ -12,4 +12,4 @@ content/
 # Git
 .git/
 .gitignore
-
+.zencoder/
