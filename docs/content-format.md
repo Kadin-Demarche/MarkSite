@@ -379,6 +379,21 @@ Supported languages via [Highlight.js](https://highlightjs.org/):
 - `go`, `rust`, `cpp`, `c`
 - And many more...
 
+### Install Buttons
+
+Add a download-focused call to action for package files:
+
+```markdown
+:::install
+[MarkSite CLI](https://example.com/marksite-cli.tar.gz)
+v1.2.3 • 14 MB
+:::
+```
+
+- First line: Markdown link used for the install button.
+- Optional extra lines: helper text shown under the title (version, size, platform).
+- Renders as a styled card with a prominent download button and the `download` attribute.
+
 ---
 
 ## File Organization

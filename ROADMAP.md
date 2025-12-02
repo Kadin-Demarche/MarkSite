@@ -9,28 +9,32 @@ Future plans and ideas for MarkSite.
 - [ ] Add incremental builds (only rebuild changed files)
 - [ ] Optimize search index size
 
-### Features
+### Publishing Basics
 - [ ] Draft posts support
-- [ ] Scheduled publishing
-- [ ] Related posts suggestions
+- [ ] Scheduled publishing using actions?
 - [ ] Category system (in addition to tags)
+- [ ] Related posts suggestions
 - [ ] Image optimization
 
 ### Developer Experience
 - [ ] Better error messages
-- [ ] `marksite doctor` command to check for issues
+- [ ] `doctor` command to check for issues
 - [ ] Live preview with WebSocket refresh
-- [ ] Plugin system
+- [ ] Built-in sitemap and RSS feed generation
+- [ ] One-click starter templates (blog, docs, landing)
+- [ ] Better defaults for navigation (breadcrumbs, previous/next links, sticky table of contents)
+- [ ] Accessibility pass (skip links, focus states, ARIA landmarks)
 
-## Version 1.2
+## Version 2.0
 
-### Content
+### Content & Extensibility
 - [ ] Multi-language support
 - [ ] Custom collections (beyond posts/pages)
 - [ ] Data files (YAML/JSON)
 - [ ] Shortcodes for reusable content
+- [ ] Plugin system
 
-### Search
+### Search & Discovery
 - [ ] Fuzzy search
 - [ ] Search suggestions
 - [ ] Search within date ranges
@@ -39,34 +43,16 @@ Future plans and ideas for MarkSite.
 ### Themes
 - [ ] Theme switching
 - [ ] Additional default themes
-- [ ] Theme marketplace
 
-## Version 2.0
+## Version 3.0
 
-### Major Features
-- [ ] API for headless CMS integration
-- [ ] Partial hydration for interactive components
-- [ ] Progressive Web App support
-- [ ] Comment system integration
-- [ ] Analytics dashboard
-
-### Enterprise
-- [ ] Team collaboration features
-- [ ] Content staging
-- [ ] Audit logs
-- [ ] Role-based permissions
+### Platform Features
+- [ ] Comment system integration (disqus ect)
 
 ## Ideas (No Timeline)
 
 - Archive pages by year/month
-- Email newsletter integration
-- A/B testing for content
-- Built-in contact forms
-- Import from Jekyll/Hugo
 - Export to other formats
-- Visual editor
-- Mobile app for posting
-- Integration with popular CMSs
 
 ## Contributing
 

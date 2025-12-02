@@ -140,3 +140,106 @@ if (document.readyState === 'loading') {
   initTOC();
 }
 
+// Install button downloader with spinner and inline download
+const initInstallButtons = () => {
+  const buttons = document.querySelectorAll('.install-button');
+  if (!buttons.length) return;
+
+  const getFileName = (btn, url, disposition) => {
+    if (disposition) {
+      const match = /filename\\*=UTF-8''([^;]+)|filename="?([^\";]+)"?/i.exec(disposition);
+      if (match) {
+        return decodeURIComponent(match[1] || match[2]);
+      }
+    }
+    const hinted = btn.getAttribute('data-filename');
+    if (hinted) return hinted;
+    try {
+      const parsed = new URL(url);
+      const last = parsed.pathname.split('/').filter(Boolean).pop();
+      if (last) return last;
+    } catch (err) {
+      // ignore
+    }
+    return 'download';
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      const url = btn.getAttribute('data-download-url') || btn.getAttribute('href');
+      if (!url) return;
+      e.preventDefault();
+      if (btn.dataset.state === 'loading') return;
+
+      const textEl = btn.querySelector('.install-button-text');
+      const iconEl = btn.querySelector('.install-button-icon');
+      const originalText = textEl ? textEl.textContent : '';
+      const originalIcon = iconEl ? iconEl.textContent : '';
+
+      const setState = (state, label, icon) => {
+        btn.dataset.state = state || '';
+        btn.classList.remove('success', 'error', 'loading');
+        if (state) btn.classList.add(state);
+        if (label && textEl) textEl.textContent = label;
+        if (icon && iconEl) iconEl.textContent = icon;
+      };
+
+      const showFeedback = (message, isError = false) => {
+        const card = btn.closest('.install-card');
+        if (!card) return;
+        let feedback = card.querySelector('.install-feedback');
+        if (!feedback) {
+          feedback = document.createElement('div');
+          feedback.className = 'install-feedback';
+          card.appendChild(feedback);
+        }
+        feedback.textContent = message || '';
+        feedback.style.display = message ? 'block' : 'none';
+        if (isError) {
+          feedback.setAttribute('role', 'alert');
+        } else {
+          feedback.removeAttribute('role');
+        }
+      };
+
+      showFeedback('');
+      setState('loading', 'Downloading...', '⟳');
+
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Download failed: ${response.status}`);
+        }
+
+        const blob = await response.blob();
+        const filename = getFileName(btn, url, response.headers.get('content-disposition'));
+
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = filename;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(blobUrl);
+
+        setState('success', 'Downloaded', '✓');
+        showFeedback('');
+        setTimeout(() => setState('', originalText, originalIcon), 2000);
+      } catch (err) {
+        console.error(err);
+        setState('error', 'Retry', '↻');
+        showFeedback(err?.message || 'Download failed. Please try again.', true);
+        setTimeout(() => setState('', originalText, originalIcon), 2500);
+      }
+    });
+  });
+};
+
+// Initialize install buttons
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initInstallButtons);
+} else {
+  initInstallButtons();
+}

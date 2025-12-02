@@ -41,6 +41,15 @@ function hello() {
 
 Check out [MarkSite documentation](https://example.com) for more.
 
+### Install Button Demo
+
+Use the install block to add a download CTA for your package:
+
+:::install
+[MarkSite CLI](https://example.com/marksite-cli.tar.gz)
+v1.2.3 • 14 MB
+:::
+
 ## Next Steps
 
 1. Edit this post or delete it
